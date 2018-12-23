@@ -1,0 +1,207 @@
+<koken:include file="inc/header.html" />
+
+<koken:load infinite="true" limit="15">
+
+<koken:head>
+	<meta property="og:site_name" content="{{ site.title }}" />
+	<meta property="og:title" content="{{ album.title strip_html="true" }}" />
+	<meta property="og:description" content="{{ album.summary | album.description strip_html="true" }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{ album.url }}" />
+	<koken:covers><koken:shift>
+	<meta property="og:image" content="{{ content.presets.medium_large.url }}" />
+	<meta property="og:image:width" content="{{ content.presets.medium_large.width }}" />
+	<meta property="og:image:height" content="{{ content.presets.medium_large.height }}" />
+	</koken:shift></koken:covers>
+	<koken:not empty="profile.twitter">
+		<meta name="twitter:card" content="gallery" />
+		<meta name="twitter:site" content="@{{ profile.twitter }}" />
+		<meta name="twitter:creator" content="@{{ profile.twitter }}" />
+		<koken:covers minimum="4" limit="4">
+			<koken:loop>
+				<meta name="twitter:image{{ index }}" content="{{ content.presets.medium_large.cropped.url }}">
+			</koken:loop>
+		</koken:covers>
+	</koken:not>
+</koken:head>
+
+<div class="top">
+
+	<h4>{{ album.title }}</h4>
+
+	<koken:if true="settings.show_album_dl">
+		<koken:album_download>
+			<koken:link title="{{ language.download }}"><i class="kicon-dl"></i></koken:link>
+		</koken:album_download>
+	</koken:if>
+
+	{{ album.description paragraphs="true" }}
+
+	<koken:if true="settings.show_album_meta">
+
+		<span class="meta">
+			<koken:topics>
+				<p id="album_topics">
+					<strong>Read more</strong>
+					<koken:loop separator="<br>">
+						<koken:link title="View {{ title }}">{{ title }}</koken:link>
+					</koken:loop>
+				</p>
+			</koken:topics>
+			<koken:categories>
+				<p id="album_categories">
+					<strong>{{ labels.category.plural }}</strong>
+					<koken:loop separator=", ">
+						<koken:link title="View all {{ labels.album.plural case='lower' }} in {{ category.title }}">
+							{{ category.title }}
+						</koken:link>
+					</koken:loop>
+				</p>
+			</koken:categories>
+			<koken:tags>
+				<p id="album_tags">
+					<strong>{{ labels.tag.plural }}</strong>
+					<koken:loop separator=", ">
+						<koken:link title="View all {{ labels.album.plural case='lower' }} in {{ tag.title }}">
+							{{ tag.title }}
+						</koken:link>
+					</koken:loop>
+				</p>
+			</koken:tags>
+		</span>
+
+	</koken:if>
+
+	<koken:if true="settings.social_bttns_show_one">
+
+		<koken:if true="album.public">
+
+			<div class="social-album">
+
+				<koken:include file="inc/share-links.html" />
+
+			</div>
+
+		</koken:if>
+
+	</koken:if>
+
+	<koken:include file="inc/social-bttns.html" />
+
+</div>
+
+<ul class="content-list">
+
+	<koken:loop>
+
+		<li>
+
+			<span class="img-wrap">
+
+				<koken:if true="settings.link_to_lightbox">
+
+					<koken:link lightbox="true" title="View {{ album.title }} in lightbox">
+
+						<koken:content_image>
+
+							<koken:img lazy="true" class="content lbox" />
+
+						</koken:content_image>
+
+					</koken:link>
+
+				<koken:else>
+
+					<koken:link title="View {{ content.title }}">
+
+						<koken:content_image>
+
+							<koken:img lazy="true" class="content" />
+
+						</koken:content_image>
+
+					</koken:link>
+
+				</koken:if>
+
+				<koken:content_video>
+
+					<koken:video />
+
+				</koken:content_video>
+
+			</span>
+
+			<span class="img-data">
+
+				<span class="img-caption">
+					<koken:if true="settings.show_title">
+						<h4><koken:link title="View {{ content.title }}">{{ content.title }}</koken:link></h4>
+					</koken:if>
+					<koken:if true="settings.show_rating">
+						<koken:rating>
+							<p>{{ rating }}</p>
+						</koken:rating>
+					</koken:if>
+					<koken:if true="settings.show_caption">
+						{{ content.caption paragraphs="true" }}
+					</koken:if>
+				</span>
+
+			</span>
+
+		</li>
+
+	</koken:loop>
+
+</ul>
+
+<div id="infinite_load_msg">
+	<span>Loading more...</span>
+</div>
+
+<koken:keyboard_scroll element="ul.content-list li" offset="-40" />
+
+<div class="bot">
+
+	<ul>
+		<li>
+			<span class="cell left">
+				<koken:previous>
+					<koken:link class="nav" title="View {{ album.title }}"><i class="icon-left-open-mini"></i> {{ album.title }}</koken:link>
+				</koken:previous>
+			</span>
+			<span class="cell">
+				<koken:link to="albums" class="nav" title="View all {{ labels.album.plural case='lower' }}">View all {{ labels.album.plural case="lower" }}</koken:link>
+			</span>
+			<span class="cell right">
+				<koken:next>
+					<koken:link class="nav" title="View {{ album.title }}">{{ album.title }} <i class="icon-right-open-mini"></i> </koken:link>
+				</koken:next>
+			</span>
+		</li>
+	</ul>
+
+</div>
+
+<koken:else>
+
+	<koken:note>
+
+		This album is empty. Add content to it in the Library.
+
+	</koken:note>
+
+</koken:load>
+
+<script>
+	$(window).on('k-infinite-loading', function() {
+		$('#infinite_load_msg').show();
+	});
+
+	$(window).on('k-infinite-loaded', function() {
+		$('#infinite_load_msg').hide();
+	});
+</script>
+
+<koken:include file="inc/footer.html" />

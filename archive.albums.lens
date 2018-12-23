@@ -1,0 +1,138 @@
+<koken:include file="inc/header.html" />
+
+<koken:load limit="4">
+	<koken:head>
+		<meta property="og:site_name" content="{{ site.title }}" />
+		<meta property="og:title" content="{{ labels.album.plural }}" />
+		<meta property="og:description" content="{{ site.description strip_html='true' }}" />
+		<meta property="og:type" content="website" />
+		<koken:first>
+			<koken:covers>
+				<koken:first>
+					<meta property="og:image" content="{{ content.presets.medium_large.url }}" />
+					<meta property="og:image:width" content="{{ content.presets.medium_large.width }}" />
+					<meta property="og:image:height" content="{{ content.presets.medium_large.height }}" />
+				</koken:first>
+			</koken:covers>
+		</koken:first>
+		<meta property="og:url" content="{{ location.site_url }}{{ location.here }}" />
+		<koken:not empty="profile.twitter">
+			<meta name="twitter:card" content="gallery" />
+			<meta name="twitter:site" content="@{{ profile.twitter }}" />
+			<meta name="twitter:creator" content="@{{ profile.twitter }}" />
+			<koken:loop>
+				<koken:covers>
+					<koken:shift>
+						<meta name="twitter:image{{ index }}" content="{{ content.presets.medium_large.cropped.url }}">
+					</koken:shift>
+				</koken:covers>
+			</koken:loop>
+		</koken:not>
+	</koken:head>
+</koken:load>
+
+<koken:load infinite="true" limit="15">
+
+<div class="archive-head">
+
+	<koken:breadcrumbs separator="/" />
+
+</div>
+
+<ul class="content-list">
+
+	<koken:loop>
+
+		<li>
+
+			<koken:covers>
+			<koken:if data="settings.cover_limit" equals="single">
+				<span class="covers n1">
+					<span class="cover">
+						<koken:first>
+							<koken:img class="content" lazy="true" />
+						</koken:first>
+					</span>
+				</span>
+			<koken:else>
+				<span class="covers crop n{{ covers.length }}">
+					<koken:loop>
+					<span class="cover">
+						<koken:img class="content" lazy="true" size="{{ settings.cover_size }}" />
+					</span>
+					</koken:loop>
+				</span>
+			</koken:if>
+			</koken:covers>
+
+			<span class="img-data">
+
+				<span class="img-caption">
+					<koken:if true="settings.show_album_title">
+						<h4><koken:link title="View {{ album.title }}">{{ album.title }}</koken:link></h4>
+					</koken:if>
+					<koken:if true="settings.show_album_summary">
+						{{ album.summary }}
+					</koken:if>
+				</span>
+
+				<koken:if true="settings.show_album_meta">
+
+					<span class="meta">
+						<koken:categories>
+							<p>
+								<strong>{{ labels.category.plural }}</strong>
+								<koken:loop separator=", ">
+									<koken:link title="View all {{ labels.album.plural case='lower' }} in {{ category.title }}">
+										{{ category.title }}
+									</koken:link>
+								</koken:loop>
+							</p>
+						</koken:categories>
+						<koken:tags>
+							<p>
+								<strong>{{ labels.tag.plural }}</strong>
+								<koken:loop separator=", ">
+									<koken:link title="View all {{ labels.album.plural case='lower' }} in {{ tag.title }}">
+										{{ tag.title }}
+									</koken:link>
+								</koken:loop>
+							</p>
+						</koken:tags>
+					</span>
+
+				</koken:if>
+
+			</span>
+
+		</li>
+
+	</koken:loop>
+
+</ul>
+
+<div class="bot">
+
+	<ul>
+		<li>
+			<span class="cell">
+				<koken:link to="albums" title="View all {{ labels.album.plural case='lower' }}">View all {{ labels.album.plural case="lower" }}</koken:link>
+			</span>
+		</li>
+	</ul>
+
+</div>
+
+<koken:include file="inc/social-bttns.html" />
+
+<koken:else>
+
+	<koken:note>
+
+		<strong>No albums found.</strong> Create some in the Library.
+
+	</koken:note>
+
+</koken:load>
+
+<koken:include file="inc/footer.html" />

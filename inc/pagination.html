@@ -1,0 +1,40 @@
+<koken:pagination limit="12">
+
+	<div class="bot">
+
+		<ul>
+			<li>
+				<span class="cell left">
+					<koken:pagination_previous>
+						<koken:link title="View page {{ previous_page.number }}" class="nav" bind_to_key="left">
+							<i class="icon-left-open-mini"></i> Previous
+						</koken:link>
+					</koken:pagination_previous>
+				</span>
+				<span class="cell middle">
+					<koken:pagination_limited_previous>
+						<koken:link>...</koken:link>
+					</koken:pagination_limited_previous>
+					<koken:loop>
+						<koken:link class="nav num {{ is_current }}" title="View page {{ number }}">
+							{{ number }}
+						</koken:link>
+						&nbsp;
+					</koken:loop>
+					<koken:pagination_limited_next>
+						<koken:link>...</koken:link>
+					</koken:pagination_limited_next>
+				</span>
+				<span class="cell right">
+					<koken:pagination_next>
+						<koken:link title="View page {{ next_page.number }}" class="nav" bind_to_key="right">
+							Next <i class="icon-right-open-mini"></i>
+						</koken:link>
+					</koken:pagination_next>
+				</span>
+			</li>
+		</ul>
+
+	</div>
+
+</koken:pagination>

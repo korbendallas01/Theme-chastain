@@ -1,0 +1,101 @@
+<header>
+
+  <span class="meta">
+    <koken:time />
+  </span>
+
+  <h4><koken:link title="View {{ essay.title }}">{{ essay.title }}</koken:link></h4>
+
+</header>
+
+<div class="content">
+
+	{{ essay.content }}
+
+  <koken:more>
+    <p class="center">
+      <koken:link title="{{ essay.title }}" class="read_more">{{ essay.read_more_label }} <i class="icon-right-open-mini"></i></koken:link>
+    </p>
+  </koken:more>
+
+</div>
+
+<footer>
+
+    <koken:topics>
+
+      <div class="topics">
+
+        <span class="meta">
+          <strong>View more</strong>
+        </span>
+
+        <koken:loop>
+
+          <div class="topic">
+
+            <koken:link title="View {{ album.title }}">
+
+              <koken:covers limit="3">
+
+                <koken:loop>
+
+                  <div class="cell">
+
+                    <koken:img size="4:3" />
+
+                  </div>
+
+                </koken:loop>
+
+              </koken:covers>
+
+            </koken:link>
+
+            <span class="caption">
+
+              <h3>{{ album.title }}&nbsp;&nbsp;<span class="divider">|</span>&nbsp;&nbsp;{{ album.counts.total }} images</h3>
+
+            </span>
+
+          </div>
+
+        </koken:loop>
+
+      </div>
+
+    </koken:topics>
+
+    <span class="meta">
+
+         <koken:categories>
+          <p id="essay_categories">
+           <strong>{{ labels.category.plural }}</strong>
+           <koken:loop separator=", ">
+                <koken:link title="View all {{ labels.essay.plural case='lower' }} in {{ category.title }}">
+                  {{ category.title }}
+                </koken:link>
+           </koken:loop>
+          </p>
+         </koken:categories>
+
+         <koken:tags>
+          <p id="essay_tags">
+            <strong>{{ labels.tag.plural }}</strong>
+           <koken:loop separator="&nbsp;">
+                <koken:link title="View all {{ labels.essay.plural case='lower' }} in {{ tag.title }}">
+                    #{{ tag.title }}
+                </koken:link>
+           </koken:loop>
+          </p>
+         </koken:tags>
+
+         <koken:if true="list">
+          <koken:discussion_count>
+            <p id="essay_count">{{ discussion_count }}</p>
+          </koken:discussion_count>
+        </koken:if>
+
+    </span>
+
+</footer>

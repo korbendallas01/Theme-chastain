@@ -1,0 +1,584 @@
+{
+	"name": "Chastain",
+	"version": "1.7.1",
+	"description": "Center-aligned theme designed for showcasing photo albums and design projects. Collections are displayed on the home page as triptychs or as single images. Essay and page support included for blogging or personal content pages. Solid choice for graphic design portfolios and photography collections.",
+	"demo": "http://demo.koken.me/#chastain",
+	"documentation": "https://store.koken.me/themes/chastain",
+	"author": {
+		"name": "Koken",
+		"link": "https://store.koken.me/authors/koken"
+	},
+	"koken_version_required": "0.22.12-beta.8",
+
+	"default_front_page": "albums",
+
+	"styles": {
+		"white": {
+			"label": "White",
+			"variables": {
+				"background_color": "#efefef",
+				"header_color": "#fff",
+				"footer_color": "#fff",
+				"title_color": "#000",
+				"font_color": "#333",
+				"meta_color": "#777",
+				"link_color": "#000",
+				"link_hover_color": "#000",
+				"nav_current_color": "#000",
+				"firefox_alias": "auto",
+				"button_color": "#fff"
+			}
+		},
+		"black": {
+			"label": "Black",
+			"variables": {
+				"background_color": "#000",
+				"header_color": "#111",
+				"footer_color": "#111",
+				"title_color": "#fff",
+				"font_color": "#818181",
+				"meta_color": "#999",
+				"link_color": "#fff",
+				"link_hover_color": "#fff",
+				"nav_current_color": "#fff",
+				"firefox_alias": "grayscale",
+				"button_color": "#111"
+			}
+		},
+		"gray": {
+			"label": "Gray",
+			"variables": {
+				"background_color": "#454545",
+				"header_color": "#4d4d4d",
+				"footer_color": "#4d4d4d",
+				"title_color": "#eee",
+				"font_color": "#9e9e9e",
+				"meta_color": "#ababab",
+				"link_color": "#eee",
+				"link_hover_color": "#eee",
+				"nav_current_color": "#eee",
+				"firefox_alias": "grayscale",
+				"button_color": "#4d4d4d"
+			}
+		}
+	},
+
+	"settings": {
+    "Typography": {
+      "icon":"type",
+      "settings": {
+        "font": {
+          "label":"Typeface",
+          "type":"select",
+          "options": [
+            { "label": "Default", "value": "default" },
+            { "label": "Classic", "value": "classic" },
+            { "label": "Fashion", "value": "fashion" },
+            { "label": "Sweet", "value": "sweet" },
+            { "label": "Tabloid", "value": "tabloid" }
+          ],
+          "value": "default",
+          "reload_preview": true
+        }
+      }
+    },
+		"Site title": {
+			"icon":"type",
+			"settings": {
+				"site_title_type": {
+					"label": "Type",
+					"type": "select",
+					"options": [
+						{ "label": "Text", "value": "text" },
+						{ "label": "Image", "value": "image" }
+					],
+					"value": "text"
+				},
+				"site_title_size": {
+					"label": "Size",
+					"type": "slider",
+					"min": 11,
+					"max": 56,
+					"step": 1,
+					"value": 15,
+					"suffix": "px",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_lh": {
+					"label": "Line height",
+					"type": "slider",
+					"min": 1,
+					"max": 4,
+					"step": 0.1,
+					"value": 1.5,
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_spacing": {
+					"label": "Spacing",
+					"type": "slider",
+					"min": 0,
+					"max": 50,
+					"step": 1,
+					"value": 1,
+					"suffix": "px",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_weight": {
+					"label": "Weight",
+					"type": "select",
+					"options": [
+						{ "label":"400", "value":"400" },
+						{ "label":"600", "value":"600" }
+					],
+					"value":"600",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_case": {
+					"label": "Transform",
+					"type": "select",
+					"options": [
+						{ "label":"Uppercase", "value":"uppercase" },
+						{ "label":"Lowercase", "value":"lowercase" },
+						{ "label":"Capitalize", "value":"capitalize" },
+						{ "label":"None", "value":"none" }
+					],
+					"value": "uppercase",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"show_tagline": {
+					"label": "Show tagline",
+					"type": "boolean",
+					"value": "true",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "text"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_img_url": {
+					"label": "Image URL",
+					"type": "string",
+					"value": "",
+					"validation": {
+						"type": "url",
+						"allow_empty": true
+					},
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "image"
+	                         }
+	                    ]
+	               }
+				},
+				"site_title_img_scale_mobile": {
+					"label": "Mobile scale",
+					"type": "slider",
+					"min": 0.1,
+					"max": 1,
+					"step": 0.1,
+					"value": 0.5,
+					"note": "Scale applied to mobile portrait and landscape view",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "site_title_type",
+	                              "equals": "image"
+	                         }
+	                    ]
+	               }
+				}
+			}
+		},
+		"Navigation": {
+			"icon":"nav",
+			"settings": {
+				"show_navigation": {
+					"label": "Show bottom navigation",
+					"type": "boolean",
+					"control_first": "true",
+					"value": true
+				},
+				"fixed_mobile_navigation": {
+					"label": "Fixed mobile navigation",
+					"type": "boolean",
+					"control_first": "true",
+					"value": "relative",
+	        "values": {
+	          "true": "fixed",
+	          "false": "relative"
+	        },
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "show_navigation",
+	                              "equals": true
+	                         }
+	                    ]
+	               }
+				},
+				"nav_spacing": {
+					"label": "Spacing",
+					"type": "slider",
+					"min":5,
+					"max":100,
+					"step":1,
+					"value":20,
+					"suffix":"px",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "show_navigation",
+	                              "equals": true
+	                         }
+	                    ]
+	               }
+				}
+			}
+		},
+		"Layout": {
+			"icon": "layout",
+			"settings": {
+				"header_padding": {
+					"label": "Header padding",
+					"type": "slider",
+					"min": 0,
+					"max": 50,
+					"step": 1,
+					"value": 15,
+					"suffix": "px"
+				},
+				"footer_padding": {
+					"label": "Footer padding",
+					"type": "slider",
+					"min": 0,
+					"max": 50,
+					"step": 1,
+					"value": 15,
+					"suffix": "px",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "show_navigation",
+	                              "equals": true
+	                         }
+	                    ]
+	               }
+				},
+				"essays_index_limit": {
+					"label": "Essays per page",
+					"type": "slider",
+					"min": 1,
+					"max": 80,
+					"step": 1,
+					"value": 20,
+					"scope": [ "essays", "archive.essays" ]
+				}
+			}
+		},
+		"Album Header": {
+			"icon": "layout",
+			"scope": [ "album" ],
+			"settings": {
+				"show_album_dl": {
+					"label": "Show download link",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "album" ]
+				}
+			}
+		},
+		"Elements": {
+			"icon": "layout",
+			"settings": {
+				"link_to_lightbox": {
+					"label": "Link images to lightbox",
+					"type": "boolean",
+					"value": false,
+					"control_first": true,
+					"scope": [ "album", "timeline" ]
+				},
+				"show_title": {
+					"label": "Show title",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "album", "timeline" ]
+				},
+				"show_caption": {
+					"label": "Show caption",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "album", "timeline" ]
+				},
+				"show_album_title": {
+					"label": "Show album title",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "index", "albums", "archive.albums", "set", "sets" ]
+				},
+				"show_album_summary": {
+					"label": "Show album summary",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "index", "albums", "archive.albums", "set", "sets" ]
+				},
+				"show_album_meta": {
+					"label": "Show categories and tags",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "index", "albums", "archive.albums", "set", "sets" ]
+				},
+				"show_rating": {
+					"label": "Show rating",
+					"note": "Requires the Rating plugin",
+					"note_align": "left",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scoped_values": true,
+					"out_of_scope_value": true,
+					"scope": [ "album", "content" ]
+				}
+			}
+		},
+		"Covers": {
+			"icon": "layout",
+			"scope": [ "index", "albums", "archive.albums", "set", "sets", "timeline" ],
+			"settings": {
+				"cover_limit": {
+					"label": "Number",
+					"type": "select",
+					"options": [
+						{ "label": "Single", "value": "single" },
+						{ "label": "Multiple", "value": "multiple" }
+					],
+					"value": "multiple"
+				},
+				"cover_size": {
+					"label": "Cover size",
+					"type": "select",
+					"options": [
+						{ "label": "4:3", "value": "4:3" },
+						{ "label": "3:4", "value": "3:4" },
+						{ "label": "3:2", "value": "3:2" },
+						{ "label": "2:3", "value": "2:3" },
+						{ "label": "2:1", "value": "2:1" },
+						{ "label": "1:1", "value": "1:1" },
+						{ "label": "16:9", "value": "16:9" }
+					],
+					"value": "2:3",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "cover_limit",
+	                              "equals": "multiple"
+	                         }
+	                    ]
+	               }
+				},
+				"cover_gutter": {
+					"label": "Cover gutter",
+					"type": "slider",
+					"min": 0,
+					"max": 30,
+					"step": 1,
+					"value": 5,
+					"suffix": "px",
+					"dependencies": {
+	                    "evaluate": "all",
+	                    "conditions": [
+	                         {
+	                              "option": "cover_limit",
+	                              "equals": "multiple"
+	                         }
+	                    ]
+	               }
+				}
+			}
+		},
+		"Social": {
+			"icon":"social",
+			"settings": {
+				"social_bttns_show_one": {
+					"label": "Show share buttons",
+					"type": "boolean",
+					"value": true,
+					"control_first": true
+				},
+				"social_bttns_show_two": {
+					"label": "Show like and tweet buttons",
+					"type": "boolean",
+					"value": false,
+					"control_first": true
+				},
+				"social_bttns_offset": {
+					"label": "Offset",
+					"type": "slider",
+					"min": 0,
+					"max": 100,
+					"step": 1,
+					"value": 5,
+					"suffix": "px",
+					"dependencies": {
+						"evaluate": "all",
+						"conditions": [
+							{
+								"option": "social_bttns_show_two",
+								"equals": true
+							}
+						]
+					}
+				},
+				"fb_href": {
+					"label": "Like link",
+					"type": "select",
+					"options": [
+						{ "label": "Page", "value": "page" },
+						{ "label": "Site", "value": "site" },
+						{ "label": "Facebook page", "value": "fbpage" }
+					],
+					"value": "page",
+					"dependencies": {
+						"evaluate": "all",
+						"conditions": [
+							{
+								"option": "social_bttns_show_two",
+								"equals": true
+							}
+						]
+					}
+				}
+			}
+		},
+		"Color": {
+			"icon": "color",
+			"settings": {
+				"background_color": {
+					"label": "Body background",
+					"type": "color",
+					"control_first": true
+				},
+				"header_color": {
+					"label": "Header background",
+					"type": "color",
+					"control_first": true
+				},
+				"footer_color": {
+					"label": "Footer background",
+					"type": "color",
+					"control_first": true
+				},
+				"title_color": {
+					"label": "Header text",
+					"type": "color",
+					"control_first": true
+				},
+				"font_color": {
+					"label": "General text",
+					"type": "color",
+					"control_first": true
+				},
+				"meta_color": {
+					"label": "Metadata text",
+					"type": "color",
+					"control_first": true
+				},
+				"link_color": {
+					"label": "Links",
+					"type": "color",
+					"control_first": true
+				},
+				"link_hover_color": {
+					"label": "Links hover",
+					"type": "color",
+					"control_first": true
+				},
+				"nav_current_color": {
+					"label": "Nav current",
+					"type": "color",
+					"control_first": true
+				}
+			}
+		},
+		"Discussions": {
+			"icon":"discuss",
+			"settings": {
+				"show_disc_essay": {
+					"label": "Show essay discussions",
+					"note": "Requires the Disqus plugin",
+					"note_align": "left",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "essay" ]
+				},
+				"show_disc_content": {
+					"label": "Show content discussions",
+					"note": "Requires the Disqus plugin",
+					"note_align": "left",
+					"type": "boolean",
+					"value": true,
+					"control_first": true,
+					"scope": [ "content" ]
+				}
+			}
+		}
+	}
+}
